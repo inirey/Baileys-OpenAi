@@ -1,30 +1,32 @@
 module.exports = {
 
-    name: "menu",
+    name: "Menu",
 
-    async execute({ sock, msg, text }) {
+    async execute(ctx) {
 
-        const q = text.toLowerCase()
+        const text = ctx.text.toLowerCase()
 
         if (
-            q !== "menu" &&
-            q !== "help" &&
-            q !== "bantuan"
+            text !== "menu" &&
+            text !== "help"
         ) return false
 
-        await sock.sendMessage(msg.key.remoteJid, {
-            text: `
-🤖 Rinz AI
+        await ctx.reply(`
+🤖 *Rinz AI*
 
-• Chat AI
-• Sticker
-• Image
-• Group
-• Owner
+Halo 👋
 
-Ketik apa saja untuk ngobrol.
-            `.trim()
-        })
+Bot berhasil online.
+
+Ketik apa saja untuk mulai chat AI.
+
+Saat ini tersedia:
+
+• Menu
+• Ping
+• AI Chat (Coming Soon)
+
+        `)
 
         return true
 
