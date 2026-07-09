@@ -24,6 +24,8 @@ async function startBot() {
         syncFullHistory: false
     })
 
+    loadPlugins()
+
     // Simpan session
     sock.ev.on("creds.update", saveCreds)
 
@@ -55,7 +57,7 @@ async function startBot() {
         }
     })
 
-    loadPlugins()
+   
 
     // Pesan masuk
     sock.ev.on("messages.upsert", async ({ messages }) => {
