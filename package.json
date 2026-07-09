@@ -1,0 +1,21 @@
+{
+  "name": "rinz-ai-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp AI Bot using Baileys & OpenAI",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "author": "Rinz",
+  "license": "MIT",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "axios": "^1.11.0",
+    "chalk": "^5.4.1",
+    "dotenv": "^16.6.1",
+    "openai": "^5.12.2",
+    "pino": "^9.9.0"
+  }
+}
