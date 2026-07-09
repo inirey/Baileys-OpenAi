@@ -1,3 +1,5 @@
+const { plugins } = require("./lib/loader")
+
 module.exports = async (sock, msg) => {
 
     const text =
@@ -7,9 +9,12 @@ module.exports = async (sock, msg) => {
 
     if (!text) return
 
-    console.log("Pesan :", text)
+    for (const plugin of plugins.values()) {
 
-    await sock.sendMessage(msg.key.remoteJid, {
-        text: `Kamu berkata:\n${text}`
-    })
+        if (await plugin.execute({ sock, msg, text })) {
+            return
+        }
+
+    }
+
 }
