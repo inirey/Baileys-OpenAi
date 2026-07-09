@@ -1,6 +1,6 @@
 const { plugins } = require("./lib/loader")
-const { getText } = require("./lib/utils")
 const createContext = require("./lib/context")
+const { getText } = require("./lib/utils")
 
 module.exports = async (sock, msg) => {
 
@@ -10,7 +10,7 @@ module.exports = async (sock, msg) => {
 
     const ctx = createContext(sock, msg, text)
 
-    for (const plugin of plugins.values()) {
+    for (const plugin of plugins) {
 
         try {
 
@@ -19,7 +19,9 @@ module.exports = async (sock, msg) => {
             if (handled) return
 
         } catch (e) {
+
             console.log(e)
+
         }
 
     }
