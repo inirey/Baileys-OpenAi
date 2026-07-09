@@ -1,5 +1,6 @@
 const { plugins } = require("./lib/loader")
 const { getText } = require("./lib/utils")
+const createContext = require("./lib/context")
 
 module.exports = async (sock, msg) => {
 
@@ -7,19 +8,19 @@ module.exports = async (sock, msg) => {
 
     if (!text) return
 
-    const ctx = {
-        sock,
-        msg,
-        text,
-        chat: msg.key.remoteJid,
-        sender: msg.key.participant || msg.key.remoteJid
-    }
+    const ctx = createContext(sock, msg, text)
 
     for (const plugin of plugins.values()) {
 
-        const handled = await plugin.execute(ctx)
+        try {
 
-        if (handled) return
+            const handled = await plugin.execute(ctx)
+
+            if (handled) return
+
+        } catch (e) {
+            console.log(e)
+        }
 
     }
 
