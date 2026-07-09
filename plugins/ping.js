@@ -1,15 +1,15 @@
 module.exports = {
 
-    name: "ping",
+    name: "Ping",
 
-    async execute({ sock, msg, text }) {
+    async execute(ctx) {
 
-        if (text.toLowerCase() !== "ping")
+        if (ctx.text.toLowerCase() !== "ping")
             return false
 
-        await sock.sendMessage(msg.key.remoteJid, {
-            text: "🏓 Pong!"
-        })
+        await ctx.react("🏓")
+
+        await ctx.reply("Pong!")
 
         return true
 
