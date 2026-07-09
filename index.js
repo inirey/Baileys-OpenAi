@@ -10,6 +10,7 @@ const {
 const pino = require("pino")
 const config = require("./config")
 const handler = require("./handler")
+const { loadPlugins } = require("./lib/loader")
 
 async function startBot() {
     const { state, saveCreds } = await useMultiFileAuthState("./session")
@@ -53,6 +54,8 @@ async function startBot() {
             }
         }
     })
+
+    loadPlugins()
 
     // Pesan masuk
     sock.ev.on("messages.upsert", async ({ messages }) => {
